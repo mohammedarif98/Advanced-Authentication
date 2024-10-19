@@ -137,12 +137,14 @@ export const login = catchAsync(async(req, res, next) => {
 
 //* ------------------- user logout ------------------------
 export const logout = catchAsync(async(req,res,next) => {
+
     res.cookie("refreshToken","loggedout",{
         expires: new Date(Date.now() + 10*1000 ),    // Set refresh token cookie to expire in 10 seconds
         httpOnly : true,
         secure: process.env.NODE_ENV === "production",
     });
     res.status(200).json({ status: "success",message: "logout successfully"})
+    
 })
 
 

@@ -36,14 +36,15 @@ const createSendToken = (user, statusCode, res, message) => {
   user.otp = undefined;
   user.confirmPassword = undefined;
 
-  const { username, email, _id } = user;          // Destructure non-sensitive user info
+  const { username, email, _id, isVerified } = user;          // Destructure non-sensitive user info
 
   return res.status(statusCode).json({
     status: "success",
     message,
     accessToken,
     refreshToken,
-    userData: { username, email, _id },
+    userData: { username, email, _id , isVerified },
+    // userData: user
   });
 };
 

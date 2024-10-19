@@ -8,6 +8,7 @@ import { signAccessToken } from "../utils/jwt.js";
 
 // Middleware for access token verification
 export const isAuthenticated = catchAsync(async (req, res, next) => {
+
     const token = req.cookies.accessToken || req.headers.authorization?.split(" ")[1];
     if (!token) return next(new customErrorHandler("You are not logged in! Please log in to get access.", 401));
 
@@ -21,6 +22,7 @@ export const isAuthenticated = catchAsync(async (req, res, next) => {
         return next(new customErrorHandler("Token is invalid or has expired", 403));
     }
 });
+
 
 
 // Middleware for refresh token verification and generating a new access token
