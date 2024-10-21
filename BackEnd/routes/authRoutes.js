@@ -7,7 +7,7 @@ import { catchAsync } from "../utils/catchAsync.js";
 
 
 router.post("/signup", signUp);
-router.post('/verify', isAuthenticated, verifyUserAccount)
+router.post('/verify', verifyUserAccount)
 router.post('/resent-otp',isAuthenticated, resendOTP)
 router.post('/login',login);
 router.get('/logout', logout);

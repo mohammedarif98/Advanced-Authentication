@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactElement, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { API_URL } from "@/server";
@@ -15,7 +15,7 @@ const SignupPage = () => {
   const dispatch = useDispatch();
   const router = useRouter()
 
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
@@ -44,7 +44,6 @@ const SignupPage = () => {
     } catch (error:any) {
       toast.error(error.response.data.message)
       console.log(error);
-      setError("Signup failed. Please try again."); 
     } finally {
       setLoading(false);
     }

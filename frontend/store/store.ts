@@ -12,6 +12,7 @@ import {
 import storage from "redux-persist/lib/storage";
 
 
+
 const rootReducer = combineReducers({ auth: authReducer });
 // Configuration for redux-persist
 const persistConfig = {

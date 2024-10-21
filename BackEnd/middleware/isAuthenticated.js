@@ -9,13 +9,13 @@ import { signAccessToken } from "../utils/jwt.js";
 // Middleware for access token verification
 export const isAuthenticated = catchAsync(async (req, res, next) => {
 
-    const token = req.cookies.accessToken || req.headers.authorization?.split(" ")[1];
+    const token = req.cookies.accessToken || req.header('Authorization')?.split(' ')[1]; 
     if (!token) return next(new customErrorHandler("You are not logged in! Please log in to get access.", 401));
 
     try{
         const decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET_KEY);
         const currentUser = await User.findById(decoded.id);
-        if (!currentUser) return next(new customErrorHandlerErrorHandler("User not found", 403));
+        if (!currentUser) return next(new customErrorHandler("User not found", 403));
         req.user = currentUser;
         next();
     }catch(error){
